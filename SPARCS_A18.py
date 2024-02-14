@@ -30,7 +30,7 @@ def main():
 
     if df is not None:
         # 데이터프레임 보기
-        st.write(df)
+        # st.write(df)
 
         # 날짜를 인덱스로 설정
         df.set_index('날짜', inplace=True)
@@ -39,9 +39,16 @@ def main():
         selected_month = st.selectbox('월 선택', df.index.strftime('%Y-%m').unique())
 
         # 월별 노선 이용객 현황 시각화
-        st.subheader(f'{selected_month} 년월 노선 이용객 현황')
+        st.subheader(f'{selected_month} 이용객 현황')
         df_selected_month = df[df.index.strftime('%Y-%m') == selected_month]
         st.bar_chart(df_selected_month.groupby('노선')['여객수송실적'].sum())
 
 if __name__ == "__main__":
     main()
+
+st.markdown("대전은 가장 이용량이 많은 경부선(대전역), 호남선(서대전역)이 모두 지나는 교통의 중심지로, ")
+st.markdown("유동인구가 많은 것으로 파악된다.")
+
+
+# 이미지 표시
+st.image("rail_line_image.png", caption='Example Image 1', use_column_width=True)
